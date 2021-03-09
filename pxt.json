@@ -1,0 +1,25 @@
+{
+    "name": "warrior",
+    "version": "0.0.0",
+    "description": "mycode for microbit",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "microphone": "*"
+    },
+    "files": [
+        "README.md",
+        "main.ts",
+        "_locales/zh-cn/warrior-strings.json",
+        "_locales/zh-tw/warrior-strings.json"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": true,
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "blocksprj"
+}

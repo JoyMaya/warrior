@@ -1,0 +1,5 @@
+{
+    "warrior.MotorRun|block": " 红龙电机|%index|速度(-255~255) %speed",
+	"warrior.Servo270|block": "小灰灰舵机|%index|角度 %degree",
+	"warrior.Servo360|block": "灰太狼舵机|%index|角度 %degree"
+}
