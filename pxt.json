@@ -1,7 +1,7 @@
 {
     "name": "warrior",
     "version": "0.0.0",
-    "description": "mycode for microbit",
+    "description": "W for microbit",
     "license": "MIT",
     "dependencies": {
         "core": "*",
