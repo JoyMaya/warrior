@@ -7,12 +7,12 @@
 	"warrior.Button|block": "手柄按键|选择 %num|返回 %value",
 	"warrior.onKey|block": "手柄按键|%pin|按下",
 	
-	"GHBit.enRocker.Nostate|block": "无",
-	"GHBit.enRocker.Up|block": "上",
-	"GHBit.enRocker.Down|block": "下",
-	"GHBit.enRocker.Left|block": "左",
-	"GHBit.enRocker.Right|block": "右",
-	"GHBit.enRocker.Press|block": "按下",
-	"GHBit.enButtonState.Press|block": "按下",
-	"GHBit.enButtonState.Realse|block": "松开"
+	"warrior.enRocker.Nostate|block": "无",
+	"warrior.enRocker.Up|block": "上",
+	"warrior.enRocker.Down|block": "下",
+	"warrior.enRocker.Left|block": "左",
+	"warrior.enRocker.Right|block": "右",
+	"warrior.enRocker.Press|block": "按下",
+	"warrior.enButtonState.Press|block": "按下",
+	"warrior.enButtonState.Realse|block": "松开"
 }
