@@ -1,5 +1,18 @@
 {
-    "warrior.MotorRun|block": " 火腿电机|%index|速度(-255~255) %speed",
+    "warrior.MotorRun|block": "红太狼电机|%index|速度(-255~255) %speed",
 	"warrior.Servo270|block": "小灰灰舵机|%index|角度 %degree",
-	"warrior.Servo360|block": "灰太狼舵机|%index|角度 %degree"
+	"warrior.Servo360|block": "灰太狼舵机|%index|角度 %degree",
+	
+	"warrior.Rocker|block": "手柄遥杆|返回 %value",
+	"warrior.Button|block": "手柄按键|选择 %num|返回 %value",
+	"warrior.onKey|block": "手柄按键|%pin|按下",
+	
+	"GHBit.enRocker.Nostate|block": "无",
+	"GHBit.enRocker.Up|block": "上",
+	"GHBit.enRocker.Down|block": "下",
+	"GHBit.enRocker.Left|block": "左",
+	"GHBit.enRocker.Right|block": "右",
+	"GHBit.enRocker.Press|block": "按下",
+	"GHBit.enButtonState.Press|block": "按下",
+	"GHBit.enButtonState.Realse|block": "松开"
 }
