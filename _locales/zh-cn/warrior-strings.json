@@ -1,18 +1,20 @@
 {
-    "warrior.MotorRun|block": "红太狼电机|%index|速度(-255~255) %speed",
-	"warrior.Servo270|block": "小灰灰舵机|%index|角度 %degree",
-	"warrior.Servo360|block": "灰太狼舵机|%index|角度 %degree",
+    "勇士.MotorRun|block": "红太狼电机|%index|速度(-255~255) %speed",
+	"勇士.Servo270|block": "小灰灰舵机|%index|角度 %degree",
+	"勇士.Servo360|block": "灰太狼舵机|%index|角度 %degree",
 	
-	"warrior.Rocker|block": "手柄遥杆|返回 %value",
-	"warrior.Button|block": "手柄按键|选择 %num|返回 %value",
-	"warrior.onKey|block": "手柄按键|%pin|按下",
+	"勇士.Rocker|block": "手柄遥杆|返回 %value",
+	"勇士.Button|block": "手柄按键|选择 %num|返回 %value",
+	"勇士.onKey|block": "手柄按键|%pin|按下",
+	"勇士.fire|block": "武器发射|通道 %pin",
 	
-	"warrior.enRocker.Nostate|block": "无",
-	"warrior.enRocker.Up|block": "上",
-	"warrior.enRocker.Down|block": "下",
-	"warrior.enRocker.Left|block": "左",
-	"warrior.enRocker.Right|block": "右",
-	"warrior.enRocker.Press|block": "按下",
-	"warrior.enButtonState.Press|block": "按下",
-	"warrior.enButtonState.Realse|block": "松开"
+	"勇士.enRocker.Nostate|block": "无",
+	"勇士.enRocker.Up|block": "上",
+	"勇士.enRocker.Down|block": "下",
+	"勇士.enRocker.Left|block": "左",
+	"勇士.enRocker.Right|block": "右",
+	"勇士.enRocker.Press|block": "按下",
+	"勇士.enButtonState.Press|block": "按下",
+	"勇士.enButtonState.Realse|block": "松开"
+
 }
