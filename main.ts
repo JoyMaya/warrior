@@ -1,6 +1,6 @@
 //% color="#AEDD81" weight=20 icon="\uf06c"
-//% groups='[ "Actuator","Handle"]'
-namespace warrior {
+//% groups='[ "动力","手柄","交战"]'
+namespace 勇士 {
     const PCA9685_ADDRESS = 0x40
 	const MODE1 = 0x00
     const MODE2 = 0x01
@@ -116,7 +116,7 @@ namespace warrior {
 	//% blockId=warrior_MotorRun block="Motor|%index|speed(-255~255) %speed"
     //% weight=90
     //% speed.min=-255 speed.max=255
-    //% group="Actuator" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    //% group="动力" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorRun(index: enMotors, speed: number): void {
         if (!initialized) {
             initPCA9685()
@@ -157,7 +157,7 @@ namespace warrior {
     //% blockId=warrior_servo block="Servo|%index|degree %degree"
     //% weight=80
     //% degree.min=-45 degree.max=225
-    //% group="Actuator" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    //% group="动力" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Servo270(index: Servos, degree: number): void {
         if (!initialized) {
             initPCA9685()
@@ -171,7 +171,7 @@ namespace warrior {
 	//% blockId=warrior_servo360A block="Servo360|%index|degree %degree"
     //% weight=79
     //% degree.min=-180 degree.max=180
-    //% group="Actuator" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    //% group="动力" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Servo360(index: Servos, degree: number): void {
         if (!initialized) {
             initPCA9685()
@@ -184,10 +184,10 @@ namespace warrior {
 }
 
     //% blockId=warrior_Rocker block="Rocker|value %value"
-    //% weight=96
+    //% weight=78
     //% blockGap=10
     //% color="#FFCC00"
-    //% group="Handle" name.fieldEditor="gridpicker" name.fieldOptions.columns=6
+    //% group="手柄" name.fieldEditor="gridpicker" name.fieldOptions.columns=6
     export function Rocker(value: enRocker): boolean {
 
         pins.setPull(DigitalPin.P8, PinPullMode.PullUp);
@@ -228,10 +228,10 @@ namespace warrior {
     }
     
     //% blockId=warrior_Button block="Button|num %num|value %value"
-    //% weight=95
+    //% weight=76
     //% blockGap=10
     //% color="#FFCC00"
-    //% group="Handle" name.fieldEditor="gridpicker" name.fieldOptions.columns=5
+    //% group="手柄" name.fieldEditor="gridpicker" name.fieldOptions.columns=5
     export function Button(num: enButton, value: enButtonState): boolean {
          let temp = false;
          switch (num) {
@@ -280,10 +280,10 @@ namespace warrior {
     }
     
     //% blockId==onKey block="Key %pin |Press"
-    //% weight=94
+    //% weight=75
     //% blockGap=10
     //% color="#FFCC00"
-    //% group="Handle" name.fieldEditor="gridpicker" name.fieldOptions.columns=5
+    //% group="手柄" name.fieldEditor="gridpicker" name.fieldOptions.columns=5
     export function onKey(pin: enButton, body: Action): void {
         let Pin = 0;
         pins.setPull(DigitalPin.P13, PinPullMode.PullUp);
@@ -302,5 +302,16 @@ namespace warrior {
         pins.onPulsed(Pin, PulseValue.Low, body);
     }
 	
+    //% blockId==warrior_fire block="武器发射|通道 %pin"
+    //% weight=60
+    //% blockGap=10
+    //% color="#CC0033"
+    //% group="交战" name.fieldEditor="gridpicker" name.fieldOptions.columns=5
+	export function warrior_fire(pin: DigitalPin): void {
+        pins.setPull(pin, PinPullMode.PullNone);
+        pins.digitalWritePin(pin, 0);
+        basic.pause(1000);
+        pins.digitalWritePin(pin, 1);
 
+    }
 }
