@@ -1,7 +1,7 @@
 {
     "name": "warrior",
     "version": "0.0.0",
-    "description": "W for microbit",
+    "description": "Extension for RX Warrior",
     "license": "MIT",
     "dependencies": {
         "core": "*",
