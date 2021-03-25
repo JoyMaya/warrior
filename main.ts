@@ -1,5 +1,5 @@
 //% color="#AEDD81" weight=20 icon="\uf06c"
-//% groups='[ "动力","手柄","交战"]'
+//% groups='[ "动力","手柄","交战","全向移动"]'
 namespace 勇士 {
     const PCA9685_ADDRESS = 0x40
 	const MODE1 = 0x00
@@ -23,7 +23,63 @@ namespace 勇士 {
         M3 = 12,
         M4 = 14
     }
-	    
+	 //全向-行驶方向速度   
+		export enum enCarRun {
+        //% blockId="Forward" block="Forward"
+        Forward = 1,
+        //% blockId="Back" block="Back"
+        Back,
+        //% blockId="MoveLeft" block="MoveLeft"
+        MoveLeft,
+        //% blockId="MoveRight" block="MoveRight"
+        MoveRight,
+        //% blockId="Spin_Left" block="Spin_Left"
+        Spin_Left,
+        //% blockId="Spin_Right" block="Spin_Right"
+        Spin_Right,
+        //% blockId="Left_Front" block="Left_Front"
+        Left_Front,
+        //% blockId="Right_Front" block="Right_Front"
+        Right_Front,
+        //% blockId="Left_Back" block="Left_Back"
+        Left_Back,
+        //% blockId="Right_Back" block="Right_Back"
+        Right_Back,
+        //% blockId="CarStop" block="CarStop"
+        CarStop
+    }
+	 //全向-原地漂移 	
+	    export enum enCarDrift {
+        //% blockId="Head_To_Left" block="Head_To_Left"
+        Head_To_Left = 1,
+        //% blockId="Head_To_Right" block="Head_To_Right"
+        Head_To_Right,
+        //% blockId="Rear_To_Left" block="Rear_To_Left"
+        Rear_To_Left,
+        //% blockId="Rear_To_Right" block="Rear_To_Right"
+        Rear_To_Right
+    }
+	 //全向-原地漂移    
+	   export enum enWideAngleDrift {
+        //% blockId="Left" block="Left"
+        Left,
+        //% blockId="Right" block="Right"
+        Right
+    }
+	 //全向-图形	
+	    export enum enPolygon {
+        //% blockId="Square" block="Square"
+        Square = 1,
+        //% blockId="Parallelogram" block="Parallelogram"
+        Parallelogram,
+        //% blockId="Rhombus" block="Rhombus"
+        Rhombus,
+        //% blockId="Flash1" block="Flash1"
+        Flash1,
+        //% blockId="Flash2" block="Flash2"
+        Flash2,
+    }
+	 //手柄-摇杆	
 		export enum enRocker {
         //% blockId="Nostate" block="Nostate"
         Nostate = 0,
@@ -112,7 +168,104 @@ namespace 勇士 {
         buf[4] = (off >> 8) & 0xff;
         pins.i2cWriteBuffer(PCA9685_ADDRESS, buf);
     }
-	
+	//全向
+	function forward(speed: number) {
+        MotorRun(enMotors.M1, speed);
+        MotorRun(enMotors.M2, speed);
+        MotorRun(enMotors.M3, speed);
+        MotorRun(enMotors.M4, speed);
+    }
+
+    function back(speed: number) {
+        MotorRun(enMotors.M1, -speed);
+        MotorRun(enMotors.M2, -speed);
+        MotorRun(enMotors.M3, -speed);
+        MotorRun(enMotors.M4, -speed);
+    }
+
+    function moveLeft(speed: number) {
+        MotorRun(enMotors.M1, -speed);
+        MotorRun(enMotors.M2, speed);
+        MotorRun(enMotors.M3, speed);
+        MotorRun(enMotors.M4, -speed);
+    }
+
+    function moveRight(speed: number) {
+        MotorRun(enMotors.M1, speed);
+        MotorRun(enMotors.M2, -speed);
+        MotorRun(enMotors.M3, -speed);
+        MotorRun(enMotors.M4, speed);
+    }
+
+    function left_Front(speed: number) {
+        MotorRun(enMotors.M1, 0);
+        MotorRun(enMotors.M2, speed);
+        MotorRun(enMotors.M3, speed);
+        MotorRun(enMotors.M4, 0);
+    }
+
+    function left_Back(speed: number) {
+        MotorRun(enMotors.M1, -speed);
+        MotorRun(enMotors.M2, 0);
+        MotorRun(enMotors.M3, 0);
+        MotorRun(enMotors.M4, -speed);
+    }
+
+    function right_Front(speed: number) {
+        MotorRun(enMotors.M1, speed);
+        MotorRun(enMotors.M2, 0);
+        MotorRun(enMotors.M3, 0);
+        MotorRun(enMotors.M4, speed);
+    }
+
+    function right_Back(speed: number) {
+        MotorRun(enMotors.M1, 0);
+        MotorRun(enMotors.M2, -speed);
+        MotorRun(enMotors.M3, -speed);
+        MotorRun(enMotors.M4, 0);
+    }
+
+    function spin_Left(speed: number) {
+        MotorRun(enMotors.M1, -speed);
+        MotorRun(enMotors.M2, -speed);
+        MotorRun(enMotors.M3, speed);
+        MotorRun(enMotors.M4, speed);
+    }
+
+    function spin_Right(speed: number) {
+        MotorRun(enMotors.M1, speed);
+        MotorRun(enMotors.M2, speed);
+        MotorRun(enMotors.M3, -speed);
+        MotorRun(enMotors.M4, -speed);
+    }
+
+    function carStop() {
+        if (!initialized) {
+            initPCA9685();
+        }
+        setPwm(8, 0, 0);
+        setPwm(9, 0, 0);
+        setPwm(10, 0, 0);
+        setPwm(11, 0, 0);
+
+        setPwm(12, 0, 0);
+        setPwm(13, 0, 0);
+        setPwm(14, 0, 0);
+        setPwm(15, 0, 0);
+    }
+
+	function MecanumRun(xSpeed: number, ySpeed: number, aSpeed: number) {
+        let speedm1 = ySpeed + xSpeed - aSpeed;
+        let speedm2 = ySpeed - xSpeed - aSpeed;
+        let speedm3 = ySpeed - xSpeed + aSpeed;
+        let speedm4 = ySpeed + xSpeed + aSpeed;
+
+        MotorRun(enMotors.M1, speedm1);
+        MotorRun(enMotors.M2, speedm2);
+        MotorRun(enMotors.M3, speedm3);
+        MotorRun(enMotors.M4, speedm4);
+    }
+
 	//% blockId=warrior_MotorRun block="Motor|%index|speed(-255~255) %speed"
     //% weight=90
     //% speed.min=-255 speed.max=255
@@ -196,24 +349,24 @@ namespace 勇士 {
         let z = pins.digitalReadPin(DigitalPin.P8);
         let now_state = enRocker.Nostate;
 
-        if (x < 200) // 上
+        if (x > 400) // 上
         {
 
             now_state = enRocker.Up;
 
         }
-        else if (x > 900) //下
+        else if (x < 150) //下
         {
 
             now_state = enRocker.Down;
         }
         else  // 左右
         {
-            if (y < 200) //右
+            if (y > 400) //右
             {
                 now_state = enRocker.Right;
             }
-            else if (y > 900) //左
+            else if (y < 150) //左
             {
                 now_state = enRocker.Left;
             }
@@ -314,4 +467,280 @@ namespace 勇士 {
         pins.digitalWritePin(pin, 1);
 
     }
+	//全向
+	//% blockId=warrior_CarRun block="CarRun|%direction|speed %speed"
+    //% weight=50
+    //% blockGap=10
+	//% color="#33CCFF"
+    //% group="全向移动"
+    //% speed.min=0 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarRun(direction: enCarRun, speed: number): void {
+        if (!initialized) {
+            initPCA9685();
+        }
+        if (speed <= 0) {
+            speed = 0;
+        }
+        switch (direction) {
+            case enCarRun.Forward:
+                forward(speed);
+                break;
+            case enCarRun.Back:
+                back(speed);
+                break;
+            case enCarRun.MoveLeft:
+                moveLeft(speed);
+                break;
+            case enCarRun.MoveRight:
+                moveRight(speed);
+                break;
+            case enCarRun.Spin_Left:
+                spin_Left(speed);
+                break;
+            case enCarRun.Spin_Right:
+                spin_Right(speed);
+                break;
+            case enCarRun.Left_Front:
+                left_Front(speed);
+                break;
+            case enCarRun.Left_Back:
+                left_Back(speed);
+                break;
+            case enCarRun.Right_Front:
+                right_Front(speed);
+                break;
+            case enCarRun.Right_Back:
+                right_Back(speed);
+                break;
+            case enCarRun.CarStop:
+                carStop();
+                break;
+            default:
+                break;
+        }
+    }
+	
+	//% blockId=warrior_CarDrift block="CarDrift|%direction|speed %speed"
+    //% weight=49
+    //% blockGap=10
+	//% color="#33CCFF"
+    //% group="全向移动"
+    //% speed.min=0 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarDrift(direction: enCarDrift, speed: number): void {
+        if (!initialized) {
+            initPCA9685();
+        }
+        if (speed <= 0) {
+            speed = 0;
+        }
+        switch (direction) {
+            case enCarDrift.Rear_To_Left:
+                MotorRun(enMotors.M1, 0);
+                MotorRun(enMotors.M2, speed);
+                MotorRun(enMotors.M3, 0);
+                MotorRun(enMotors.M4, -speed);
+                break;
+            case enCarDrift.Rear_To_Right:
+                MotorRun(enMotors.M1, 0);
+                MotorRun(enMotors.M2, -speed);
+                MotorRun(enMotors.M3, 0);
+                MotorRun(enMotors.M4, speed);
+                break;
+            case enCarDrift.Head_To_Left:
+                MotorRun(enMotors.M1, -speed);
+                MotorRun(enMotors.M2, 0);
+                MotorRun(enMotors.M3, speed);
+                MotorRun(enMotors.M4, 0);
+                break;
+            case enCarDrift.Head_To_Right:
+                MotorRun(enMotors.M1, speed);
+                MotorRun(enMotors.M2, 0);
+                MotorRun(enMotors.M3, -speed);
+                MotorRun(enMotors.M4, 0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    //% blockId=warrior_WideAngleDrift block="WideAngleDrift|%direction|speed_front %speed_front|speed_back %speed_back"
+    //% weight=48
+    //% blockGap=10
+	//% color="#33CCFF"
+    //% group="全向移动"
+    //% speed_front.min=0 speed_front.max=255 
+    //% speed_back.min=0 speed_back.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function WideAngleDrift(direction: enWideAngleDrift, speed_front: number, speed_back: number): void {
+        if (!initialized) {
+            initPCA9685();
+        }
+        if (speed_front <= 0) {
+            speed_front = 0;
+        }
+        if (speed_back <= 0) {
+            speed_back = 0;
+        }
+
+        switch (direction) {
+            case enWideAngleDrift.Left:
+                MotorRun(enMotors.M1, -speed_front);
+                MotorRun(enMotors.M2, speed_back);
+                MotorRun(enMotors.M3, speed_front);
+                MotorRun(enMotors.M4, -speed_back);
+                break;
+            case enWideAngleDrift.Right:
+                MotorRun(enMotors.M1, speed_front);
+                MotorRun(enMotors.M2, -speed_back);
+                MotorRun(enMotors.M3, -speed_front);
+                MotorRun(enMotors.M4, speed_back);
+                break;
+            default:
+                break;
+        }
+    }
+	
+	//% blockId=warrior_Polygon block="Polygon|%polygon|speed %speed"
+    //% weight=47
+    //% blockGap=10
+	//% color="#33CCFF"
+    //% group="全向移动"
+    //% speed.min=0 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function Polygon(polygon: enPolygon, speed: number): void {
+        if (!initialized) {
+            initPCA9685();
+        }
+        if (speed < 0) {
+            speed = 0;
+        }
+
+        switch (polygon) {
+            case enPolygon.Square:
+                back(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                moveRight(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                forward(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                moveLeft(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+                break;
+            case enPolygon.Parallelogram:
+                right_Front(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                moveRight(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                left_Back(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                moveLeft(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+                break;
+            case enPolygon.Rhombus:
+                right_Front(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                right_Back(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                left_Back(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                left_Front(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+                break;
+            case enPolygon.Flash1:
+                right_Front(speed);
+                basic.pause(1500);
+                carStop();
+                basic.pause(10);
+
+                moveLeft(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                right_Front(speed);
+                basic.pause(1500);
+                carStop();
+                basic.pause(10);
+                break;
+            case enPolygon.Flash2:
+                left_Back(speed);
+                basic.pause(1500);
+                carStop();
+                basic.pause(10);
+
+                moveRight(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                left_Back(speed);
+                basic.pause(1500);
+                carStop();
+                basic.pause(10);
+                break;
+            default:
+                break;
+        }
+    }
+	
+	//% blockId=warrior_Handle block="Handle|x %x|y %y|rotation %leftOrRight"
+    //% weight=46
+    //% blockGap=10
+	//% color="#33CCFF"	
+    //% group="全向移动"
+    //% leftOrRight.min=-1 leftOrRight.max=1
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function Handle(x: number, y: number, leftOrRight: number): void {
+        if (!initialized) {
+            initPCA9685();
+        }
+        if (Math.abs(x) <= 50 && Math.abs(y) <= 50) {
+            x = 0;
+            y = 0;
+        }
+        if (leftOrRight != 0 && leftOrRight != 1 && leftOrRight != -1) {
+            leftOrRight = 0;
+        }
+        let linearSpeed = 255;
+        let angularSpeed = 255;
+        x = x / 512;
+        y = y / 512;
+        MecanumRun(x * linearSpeed, y * linearSpeed, -leftOrRight * angularSpeed);
+    }
+
 }
