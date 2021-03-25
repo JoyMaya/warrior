@@ -1,5 +1,5 @@
 {
-    "勇士.MotorRun|block": "红格电机|%index|速度(-255~255) %speed",
+        "勇士.MotorRun|block": "红格电机|%index|速度(-255~255) %speed",
 	"勇士.Servo270|block": "灰格舵机|%index|角度 %degree",
 	"勇士.Servo360|block": "灰体舵机|%index|角度 %degree",
 	
