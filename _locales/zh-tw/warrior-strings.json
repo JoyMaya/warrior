@@ -1,12 +1,17 @@
 {
-    "勇士.MotorRun|block": " 红太狼电机|%index|速度(-255~255) %speed",
-	"勇士.Servo270|block": "GeekServo|9g舵機|%index|角度 %degree",
-	"勇士.Servo360|block": "双出舵機|%index|角度 %degree",
+        "勇士.MotorRun|block": "红格电机|%index|速度(-255~255) %speed",
+	"勇士.Servo270|block": "灰格舵机|%index|角度 %degree",
+	"勇士.Servo360|block": "灰体舵机|%index|角度 %degree",
 	
 	"勇士.Rocker|block": "手柄遥杆|返回 %value",
 	"勇士.Button|block": "手柄按键|选择 %num|返回 %value",
 	"勇士.onKey|block": "手柄按键|%pin|按下",
 	"勇士.fire|block": "武器发射|通道 %pin",
+	"勇士.CarRun|block":"全向小车|%direction|速度(0~255) %speed",
+	"勇士.CarDrift|block":"原地漂移|%direction|速度(0~255) %speed",
+	"勇士.WideAngleDrift|block":"大角度漂移|%direction|前电机速度(0~255) %speed_front|后电机速度(0~255) %speed_back",
+	"勇士.Polygon|block":"图形|%polygon|速度(0~255) %speed",
+	"勇士.Handle|block":"模拟手柄遥控|X值(-512~512) %x|Y值(-512~512) %y|旋转方向 %leftOrRight",
 	
 	"勇士.enRocker.Nostate|block": "无",
 	"勇士.enRocker.Up|block": "上",
@@ -15,5 +20,32 @@
 	"勇士.enRocker.Right|block": "右",
 	"勇士.enRocker.Press|block": "按下",
 	"勇士.enButtonState.Press|block": "按下",
-	"勇士.enButtonState.Realse|block": "松开"
+	"勇士.enButtonState.Realse|block": "松开",
+	
+	"勇士.enCarRun.Forward|block": "前进",
+	"勇士.enCarRun.Back|block": "后退",
+	"勇士.enCarRun.MoveLeft|block": "向左平移",
+	"勇士.enCarRun.MoveRight|block": "向右平移",
+	"勇士.enCarRun.Spin_Left|block": "向左旋转",
+	"勇士.enCarRun.Spin_Right|block": "向右旋转",
+	"勇士.enCarRun.Left_Front|block": "向左前方",
+	"勇士.enCarRun.Right_Front|block": "向右前方",
+	"勇士.enCarRun.Left_Back|block": "向左后方",
+	"勇士.enCarRun.Right_Back|block": "向右后方",
+	"勇士.enCarRun.CarStop|block": "停止",
+	
+	"勇士.enCarDrift.Head_To_Left|block": "车头向左",
+	"勇士.enCarDrift.Head_To_Right|block": "车头向右",
+	"勇士.enCarDrift.Rear_To_Left|block": "车尾向左",
+	"勇士.enCarDrift.Rear_To_Right|block": "车尾向右",
+	
+	"勇士.enWideAngleDrift.Left|block": "向左",
+	"勇士.enWideAngleDrift.Right|block": "向右",
+
+	"勇士.enPolygon.Flash1|block": "闪电1",
+	"勇士.enPolygon.Flash2|block": "闪电2",
+	"勇士.enPolygon.Square|block": "正方形",
+	"勇士.enPolygon.Parallelogram|block": "平行四边形",
+	"勇士.enPolygon.Rhombus|block": "菱形"
+
 }
