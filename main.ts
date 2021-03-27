@@ -349,24 +349,24 @@ namespace 勇士 {
         let z = pins.digitalReadPin(DigitalPin.P8);
         let now_state = enRocker.Nostate;
 
-        if (x > 400) // 上
+        if (x > 700) // 上
         {
 
             now_state = enRocker.Up;
 
         }
-        else if (x < 150) //下
+        else if (x < 300) //下
         {
 
             now_state = enRocker.Down;
         }
         else  // 左右
         {
-            if (y > 400) //右
+            if (y > 700) //右
             {
                 now_state = enRocker.Right;
             }
-            else if (y < 150) //左
+            else if (y < 300) //左
             {
                 now_state = enRocker.Left;
             }
