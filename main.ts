@@ -336,6 +336,30 @@ namespace 勇士 {
     
 }
 
+    //% blockId=warrior_RockerX block="RockerX"
+    //% weight=74
+    //% blockGap=10
+	//% color="#FFCC00"
+	//% group="手柄"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function RockerX(): number {
+         
+        let rocker_x = pins.analogReadPin(AnalogPin.P2) + 40 - 512;
+        return rocker_x;  
+    } 
+	
+	//% blockId=warrior_RockerY block="RockerY"
+    //% weight=73
+    //% blockGap=10
+	//% color="#FFCC00"
+	//% group="手柄"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function RockerY(): number {
+         
+        let rocker_y = pins.analogReadPin(AnalogPin.P1) + 55 - 512;
+        return rocker_y;  
+    }
+
     //% blockId=warrior_Rocker block="Rocker|value %value"
     //% weight=78
     //% blockGap=10
@@ -344,29 +368,29 @@ namespace 勇士 {
     export function Rocker(value: enRocker): boolean {
 
         pins.setPull(DigitalPin.P8, PinPullMode.PullUp);
-        let x = pins.analogReadPin(AnalogPin.P1);
-        let y = pins.analogReadPin(AnalogPin.P2);
+        let y = pins.analogReadPin(AnalogPin.P1);
+        let x = pins.analogReadPin(AnalogPin.P2);
         let z = pins.digitalReadPin(DigitalPin.P8);
         let now_state = enRocker.Nostate;
 
-        if (x > 700) // 上
+        if (y > 700) // 上
         {
 
             now_state = enRocker.Up;
 
         }
-        else if (x < 300) //下
+        else if (y < 300) //下
         {
 
             now_state = enRocker.Down;
         }
         else  // 左右
         {
-            if (y > 700) //右
+            if (x > 700) //右
             {
                 now_state = enRocker.Right;
             }
-            else if (y < 300) //左
+            else if (x < 300) //左
             {
                 now_state = enRocker.Left;
             }
@@ -742,5 +766,6 @@ namespace 勇士 {
         y = y / 512;
         MecanumRun(x * linearSpeed, y * linearSpeed, -leftOrRight * angularSpeed);
     }
+ 
 
 }
