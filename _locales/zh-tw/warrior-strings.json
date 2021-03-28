@@ -6,8 +6,7 @@
 	"勇士.Rocker|block": "手柄遥杆|返回 %value",
 	"勇士.Button|block": "手柄按键|选择 %num|返回 %value",
 	"勇士.onKey|block": "手柄按键|%pin|按下",
-	"勇士.RockerX|block": "摇杆X",
-	"勇士.RockerY|block": "摇杆Y",
+	"勇士.RockerV|block": "摇杆值|%axis",
 	
 	"勇士.fire|block": "武器发射|通道 %pin",
 	
@@ -25,6 +24,9 @@
 	"勇士.enRocker.Press|block": "按下",
 	"勇士.enButtonState.Press|block": "按下",
 	"勇士.enButtonState.Realse|block": "松开",
+	
+	"勇士.Rocker_axis.RockerX|block": "X轴",
+	"勇士.Rocker_axis.RockerY|block": "Y轴",
 	
 	"勇士.enCarRun.Forward|block": "前进",
 	"勇士.enCarRun.Back|block": "后退",
