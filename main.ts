@@ -95,6 +95,14 @@ namespace 勇士 {
         Press
     }
 	
+	//手柄-摇杆返回值
+		export enum Rocker_axis {
+		//% blockId="RockerX" block="RockerX"
+		RockerX = 0,
+		//% blockId="RockerY" block="RockerY"
+		RockerY = 1
+	}
+		
 	    export enum enButtonState {
         //% blockId="Press" block="Press"
         Press = 0,
@@ -335,31 +343,7 @@ namespace 勇士 {
         setPwm(index, 0, value)
     
 }
-
-    //% blockId=warrior_RockerX block="RockerX"
-    //% weight=74
-    //% blockGap=10
-	//% color="#FFCC00"
-	//% group="手柄"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RockerX(): number {
-         
-        let rocker_x = pins.analogReadPin(AnalogPin.P2) + 40 - 512;
-        return rocker_x;  
-    } 
 	
-	//% blockId=warrior_RockerY block="RockerY"
-    //% weight=73
-    //% blockGap=10
-	//% color="#FFCC00"
-	//% group="手柄"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RockerY(): number {
-         
-        let rocker_y = pins.analogReadPin(AnalogPin.P1) + 55 - 512;
-        return rocker_y;  
-    }
-
     //% blockId=warrior_Rocker block="Rocker|value %value"
     //% weight=78
     //% blockGap=10
@@ -404,6 +388,21 @@ namespace 勇士 {
 
     }
     
+	//% blockId==warrior_RockerV block="RockerAxis %axis"
+    //% weight=74
+    //% blockGap=10
+    //% color="#FFCC00"
+    //% group="手柄" name.fieldEditor="gridpicker" name.fieldOptions.columns=5
+    export function RockerV(axis: Rocker_axis): number {
+        let RockerValue = 0;
+        if (axis == Rocker_axis.RockerX) {
+            RockerValue = pins.analogReadPin(AnalogPin.P2) + 40 - 512;
+        } else if (axis == Rocker_axis.RockerY) {
+            RockerValue = pins.analogReadPin(AnalogPin.P1) + 55 - 512;
+        }
+        return RockerValue; 
+    }
+	
     //% blockId=warrior_Button block="Button|num %num|value %value"
     //% weight=76
     //% blockGap=10
